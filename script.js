@@ -1,140 +1,134 @@
 /* ==========================================================================
-   Teste de afinidade partidária — RJ 2026 · PT, PSB, PDT, PSD
-   Posições codificadas pelo autor a partir do guia comparativo
-   (corte informativo: 20/07/2026). Escala: −2 a +2.
-   Escopo de cada afirmação: "federal", "estadual" ou "ambos".
-   Tudo roda localmente; nenhum dado sai do navegador.
+   Teste de afinidade partidária — RJ 2026 · esquerdas
+   Campos comparados (nível de legenda no voto proporcional):
+     PT/PCdoB — Federação Brasil da Esperança (PT–PCdoB–PV): os votos das três
+                siglas se somam como uma legenda única.
+     PSB      — Partido Socialista Brasileiro.
+     PDT      — Partido Democrático Trabalhista.
+     PSOL     — federado com a Rede (Federação PSOL–Rede).
+   Posições codificadas pelo autor a partir do guia comparativo e de posições
+   públicas verificadas (corte informativo: 20/07/2026). Escala: −2 a +2.
+   Como são todos partidos de esquerda, os códigos medem sobretudo INTENSIDADE
+   e PRIORIDADE, não direções opostas. Tudo roda localmente no navegador.
    ========================================================================== */
 
 "use strict";
 
 const PARTIDOS = {
-  PT:  { nome: "Partido dos Trabalhadores",       cor: "pt"  },
-  PSB: { nome: "Partido Socialista Brasileiro",   cor: "psb" },
-  PDT: { nome: "Partido Democrático Trabalhista", cor: "pdt" },
-  PSD: { nome: "Partido Social Democrático",      cor: "psd" }
+  PT:   { sigla: "PT/PCdoB", nome: "Federa\u00e7\u00e3o Brasil da Esperan\u00e7a (PT\u2013PCdoB\u2013PV)", cor: "pt"  },
+  PSB:  { sigla: "PSB",      nome: "Partido Socialista Brasileiro",                                     cor: "psb" },
+  PDT:  { sigla: "PDT",      nome: "Partido Democr\u00e1tico Trabalhista",                              cor: "pdt" },
+  PSOL: { sigla: "PSOL",     nome: "PSOL (federado com a Rede)",                                        cor: "psol" }
 };
 
 const ESCOPO_ROTULO = {
   federal: "Vale para: deputado federal",
   estadual: "Vale para: deputado estadual",
-  ambos: "Vale para: as duas câmaras"
+  ambos: "Vale para: as duas c\u00e2maras"
 };
 
 const QUESTOES = [
   {
-    eixo: "Economia", escopo: "ambos",
-    texto: "O Estado deve ser o principal indutor do desenvolvimento econômico, mesmo que isso exija mais gasto público e empresas estatais fortes.",
-    pos: { PT: 2, PSB: 2, PDT: 2, PSD: -1 },
-    just: "PT, PSB e PDT são variações de uma mesma família desenvolvimentista. O PSD é liberal-pragmático em doutrina — ainda que governista na prática."
+    eixo: "Governo Lula", escopo: "federal",
+    texto: "Um bom deputado de esquerda deve defender o governo Lula por inteiro, evitando cr\u00edticas p\u00fablicas que possam enfraquec\u00ea-lo.",
+    ctx: "O contr\u00e1rio disso \u00e9 o chamado \u201capoio cr\u00edtico\u201d: votar com o governo contra a direita, mas cobr\u00e1-lo abertamente quando discorda.",
+    pos: { PT: 2, PSB: 2, PDT: 1, PSOL: -1 },
+    just: "PT/PCdoB e PSB s\u00e3o o n\u00facleo do governo (a vice-presid\u00eancia \u00e9 do PSB). O PDT \u00e9 aliado, com desgastes recentes. O PSOL pratica o apoio cr\u00edtico: vota junto na maioria das pautas, mas critica pela esquerda \u2014 caso do arcabou\u00e7o fiscal e do petr\u00f3leo na Amaz\u00f4nia."
   },
   {
-    eixo: "Economia", escopo: "ambos",
-    texto: "Prefiro partidos comprometidos com disciplina fiscal e com a redução do tamanho do Estado.",
-    pos: { PT: -2, PSB: -1, PDT: -2, PSD: 2 },
-    just: "Entre os quatro, só o PSD (sobretudo sua direção nacional) está genuinamente à direita do consenso econômico; o PDT é o mais refratário ao ajuste."
+    eixo: "Economia \u00b7 Regras fiscais", escopo: "federal",
+    texto: "O governo acerta ao respeitar limites de gastos \u2014 o chamado arcabou\u00e7o fiscal \u2014 mesmo que isso adie investimentos sociais.",
+    ctx: "Arcabou\u00e7o fiscal \u00e9 a regra que limita quanto as despesas federais podem crescer por ano, para controlar a d\u00edvida p\u00fablica.",
+    pos: { PT: 1, PSB: 1, PDT: 0, PSOL: -2 },
+    just: "A gest\u00e3o Haddad (PT) fez do arcabou\u00e7o seu piso de credibilidade, com PSB junto. O PDT aceita com reservas trabalhistas. O PSOL votou contra e defende revogar limites que travem gasto social."
   },
   {
-    eixo: "Economia · Indústria", escopo: "federal",
-    texto: "Reindustrializar o país com política industrial, crédito público e metas de inovação deve ser prioridade nacional.",
-    pos: { PT: 2, PSB: 2, PDT: 1, PSD: 0 },
-    just: "A neoindustrialização (agenda Alckmin/MDIC) é a marca econômica do PSB; o PT converge. A ênfase do PSD está em agro e energia."
+    eixo: "Economia \u00b7 Impostos", escopo: "federal",
+    texto: "O Brasil deve criar impostos sobre grandes fortunas e heran\u00e7as milion\u00e1rias, mesmo enfrentando forte rea\u00e7\u00e3o do mercado financeiro.",
+    ctx: "Hoje o pa\u00eds n\u00e3o taxa grandes fortunas; a taxa\u00e7\u00e3o de heran\u00e7as \u00e9 baixa em compara\u00e7\u00e3o internacional.",
+    pos: { PT: 1, PSB: 0, PDT: 1, PSOL: 2 },
+    just: "\u00c9 bandeira hist\u00f3rica de todo o campo, mas com intensidades diferentes: o PSOL a coloca no centro do programa; PT e PDT a mant\u00eam no papel enquanto priorizam reformas negoci\u00e1veis (como a isen\u00e7\u00e3o do IR at\u00e9 R$ 5 mil); o PSB \u00e9 o mais cauteloso com o mercado."
   },
   {
-    eixo: "Ambiente · Economia", escopo: "federal",
-    texto: "Agronegócio e expansão da produção de energia — incluindo petróleo — merecem prioridade e menos entraves regulatórios.",
-    pos: { PT: -1, PSB: -2, PDT: 1, PSD: 2 },
-    just: "O polo pró-exploração do governo está no PSD (Minas e Energia); o PSB é o mais ambientalista; o PT racha; o PDT é desenvolvimentista clássico."
+    eixo: "Estilo \u00b7 Centr\u00e3o", escopo: "federal",
+    texto: "Para aprovar projetos importantes, \u00e9 aceit\u00e1vel negociar cargos e emendas com o chamado Centr\u00e3o.",
+    ctx: "Centr\u00e3o \u00e9 o bloco de partidos sem ideologia fixa que apoia qualquer governo em troca de cargos e verbas do or\u00e7amento.",
+    pos: { PT: 1, PSB: 1, PDT: 0, PSOL: -2 },
+    just: "PT/PCdoB e PSB governam e negociam \u2014 \u00e9 o pre\u00e7o da governabilidade que aceitam pagar. O PSOL faz da recusa a esse m\u00e9todo uma marca de identidade. O PDT oscila conforme a conjuntura."
   },
   {
-    eixo: "Ambiente", escopo: "federal",
-    texto: "A exploração de petróleo na Foz do Amazonas deveria ser barrada por precaução ambiental, mesmo com perda de receitas.",
-    pos: { PT: 0, PSB: 1, PDT: -1, PSD: -2 },
-    just: "A licença saiu de um ministério do PSD, num governo do PT dividido entre a ala ambientalista e a desenvolvimentista. O programa do PSB pende ao clima."
+    eixo: "Ambiente \u00b7 Petr\u00f3leo", escopo: "federal",
+    texto: "O Brasil deveria desistir de explorar petr\u00f3leo perto da foz do rio Amazonas, mesmo abrindo m\u00e3o dessa receita.",
+    ctx: "Em 2025, o governo autorizou a Petrobras a pesquisar petr\u00f3leo na regi\u00e3o, contrariando ambientalistas \u2014 inclusive dentro da pr\u00f3pria base.",
+    pos: { PT: 0, PSB: 1, PDT: -1, PSOL: 2 },
+    just: "A licen\u00e7a saiu de um governo do PT dividido entre as alas ambientalista e desenvolvimentista. O PSB pende ao clima no programa. O PDT \u00e9 desenvolvimentista cl\u00e1ssico. O PSOL foi a principal voz contra, \u00e0 esquerda do governo."
   },
   {
-    eixo: "Política social", escopo: "ambos",
-    texto: "Transferência de renda, cotas e políticas afirmativas devem ser mantidas e ampliadas.",
-    pos: { PT: 2, PSB: 2, PDT: 1, PSD: 0 },
-    just: "É o núcleo identitário do PT, com o PSB ao lado. O PDT converge no discurso; o PSD adere sem protagonismo programático."
+    eixo: "Costumes \u00b7 Aborto", escopo: "federal",
+    texto: "Deputados devem defender abertamente a legaliza\u00e7\u00e3o do aborto, mesmo sabendo que o tema tem alto custo eleitoral.",
+    ctx: "Hoje o aborto s\u00f3 \u00e9 legal no Brasil em tr\u00eas situa\u00e7\u00f5es: estupro, risco de vida da gestante e anencefalia do feto.",
+    pos: { PT: 1, PSB: 0, PDT: -1, PSOL: 2 },
+    just: "O PSOL assume a pauta sem rodeios. No PT/PCdoB, muitas parlamentares a defendem (Jandira Feghali \u00e9 refer\u00eancia hist\u00f3rica na sa\u00fade da mulher), mas a c\u00fapula evita o tema. PSB e PDT abrigam alas crist\u00e3s e preferem sil\u00eancio."
   },
   {
-    eixo: "Educação", escopo: "ambos",
-    texto: "A prioridade máxima da educação deve ser a escola pública em tempo integral, na linha dos CIEPs.",
-    pos: { PT: 1, PSB: 1, PDT: 2, PSD: 0 },
-    just: "Bandeira fundadora do PDT (Brizola e Darcy Ribeiro), com memória forte no Rio. PT e PSB convergem por outras vias; o PSD trata educação como gestão."
+    eixo: "Seguran\u00e7a \u00b7 Drogas", escopo: "federal",
+    texto: "A maconha deveria ser legalizada e regulamentada pelo Estado, para tirar essa fonte de dinheiro do tr\u00e1fico.",
+    ctx: "Legalizar \u00e9 diferente de descriminalizar: na legaliza\u00e7\u00e3o, o Estado regula produ\u00e7\u00e3o e venda, como faz com \u00e1lcool e tabaco.",
+    pos: { PT: 0, PSB: 0, PDT: -1, PSOL: 2 },
+    just: "\u00c9 pauta assumida do PSOL, tamb\u00e9m como pol\u00edtica de seguran\u00e7a. PT/PCdoB e PSB t\u00eam defensores individuais, sem posi\u00e7\u00e3o de bancada. No PDT, a base ligada \u00e0s pol\u00edcias empurra na dire\u00e7\u00e3o contr\u00e1ria."
   },
   {
-    eixo: "Trabalho · Previdência", escopo: "federal",
-    texto: "Proteger as aposentadorias e a valorização do salário mínimo deve vir antes do ajuste fiscal.",
-    pos: { PT: 2, PSB: 1, PDT: 2, PSD: -1 },
-    just: "É a doutrina trabalhista do PDT — hoje em tensão com o desgaste do caso INSS, ocorrido sob gestão do partido na pasta. O PT converge; o PSD prioriza o fiscal em tese."
+    eixo: "Estrat\u00e9gia \u00b7 Gest\u00e3o", escopo: "ambos",
+    texto: "A esquerda ganha mais elei\u00e7\u00f5es provando que governa bem \u2014 servi\u00e7os funcionando, contas em dia \u2014 do que levantando bandeiras de transforma\u00e7\u00e3o radical.",
+    pos: { PT: 1, PSB: 1, PDT: 2, PSOL: -2 },
+    just: "\u00c9 a tese-s\u00edntese do PDT fluminense, com Niter\u00f3i (Rodrigo Neves) como vitrine. PT/PCdoB e PSB equilibram gest\u00e3o e bandeira. O PSOL inverte a ordem: sem disputar o rumo da sociedade, governar bem seria administrar o problema."
   },
   {
-    eixo: "Segurança pública", escopo: "federal",
-    texto: "A segurança pública precisa de coordenação nacional, com padrões para as polícias e controle de letalidade (linha da PEC da Segurança).",
-    pos: { PT: 2, PSB: 2, PDT: 1, PSD: -1 },
-    just: "Doutrina federal-coordenadora de PT e PSB (legado Dino/Lewandowski). No PSD, governadores como Caiado resistem à federalização; a bancada é reticente."
+    eixo: "Movimentos sociais", escopo: "ambos",
+    texto: "Ocupa\u00e7\u00f5es de terrenos e pr\u00e9dios abandonados por movimentos de moradia s\u00e3o formas leg\u00edtimas de press\u00e3o pol\u00edtica.",
+    ctx: "O Rio tem milhares de im\u00f3veis vazios em \u00e1reas centrais e um d\u00e9ficit habitacional grande \u2014 da\u00ed as ocupa\u00e7\u00f5es organizadas.",
+    pos: { PT: 1, PSB: 0, PDT: 0, PSOL: 2 },
+    just: "O PSOL nasceu e vive junto desses movimentos. O PT/PCdoB \u00e9 aliado hist\u00f3rico, moderado pelo exerc\u00edcio do governo. PSB e PDT mant\u00eam dist\u00e2ncia institucional."
   },
   {
-    eixo: "Segurança pública", escopo: "ambos",
-    texto: "Prefiro priorizar investigação, perícia e inteligência policial a operações ostensivas de confronto.",
-    pos: { PT: 1, PSB: 1, PDT: 2, PSD: -1 },
-    just: "É a linha técnico-investigativa associada a Martha Rocha (PDT). No PSD, as vitrines de Caiado e Ratinho vão no sentido ostensivo; Paes fica entre a tecnologia e a guarda armada."
+    eixo: "Economia \u00b7 Setor privado", escopo: "ambos",
+    texto: "Parcerias com empresas privadas \u2014 concess\u00f5es e PPPs \u2014 s\u00e3o bem-vindas para tocar servi\u00e7os e obras p\u00fablicas.",
+    ctx: "Na PPP (parceria p\u00fablico-privada), a empresa constr\u00f3i ou opera o servi\u00e7o e o governo paga ou concede a explora\u00e7\u00e3o por contrato.",
+    pos: { PT: 0, PSB: 2, PDT: 1, PSOL: -2 },
+    just: "O PSB \u00e9 o mais amig\u00e1vel ao setor privado do campo (a agenda industrial de Alckmin \u00e9 o s\u00edmbolo). O PDT usa o instrumento em Niter\u00f3i. O PT aceita caso a caso. O PSOL v\u00ea privatiza\u00e7\u00e3o disfar\u00e7ada e prefere o servi\u00e7o 100% p\u00fablico."
   },
   {
-    eixo: "Segurança pública", escopo: "estadual",
-    texto: "No Rio, enfrentar o crime organizado exige endurecimento: mais operações ostensivas e apoio irrestrito às forças policiais.",
-    pos: { PT: -2, PSB: -2, PDT: -1, PSD: 1 },
-    just: "A doutrina do confronto pertence ao campo bolsonarista, fora deste teste — mas, entre os quatro, o PSD é o que mais abriga defensores da linha dura."
+    eixo: "Estilo de mandato", escopo: "ambos",
+    texto: "Prefiro deputados que estejam nas ruas com os movimentos e fa\u00e7am barulho a deputados discretos que negociam nos bastidores.",
+    pos: { PT: 0, PSB: -1, PDT: 0, PSOL: 2 },
+    just: "O mandato-ativista \u00e9 a assinatura do PSOL carioca (Tarc\u00edsio Motta, Tal\u00edria Petrone, Renata Souza \u2014 e o legado de Marielle Franco). O PSB cultiva o perfil t\u00e9cnico-institucional. PT/PCdoB e PDT combinam os dois registros."
   },
   {
-    eixo: "Costumes e direitos", escopo: "federal",
-    texto: "Pautas como a descriminalização das drogas e do aborto devem avançar no Congresso.",
-    pos: { PT: 1, PSB: 1, PDT: 0, PSD: -1 },
-    just: "Os programas de PT e PSB são progressistas, com cúpulas cautelosas nesses dois temas. O PDT não tem linha unificada; a bancada do PSD é com frequência conservadora."
+    eixo: "Rio 2026 \u00b7 Governo do estado", escopo: "estadual",
+    texto: "Apoiar Eduardo Paes para governador \u00e9 o caminho certo para a esquerda fluminense em 2026.",
+    ctx: "Paes \u00e9 do PSD, partido de centro. PT/PCdoB e PDT est\u00e3o oficialmente no bloco dele; o PSOL lan\u00e7a candidatura pr\u00f3pria; o PSB ficou fora da chapa majorit\u00e1ria.",
+    pos: { PT: 2, PSB: 0, PDT: 2, PSOL: -2 },
+    just: "O diret\u00f3rio do PT aprovou o apoio por unanimidade, com Benedita da Silva na chapa ao Senado. O PDT est\u00e1 no mesmo bloco. O PSOL v\u00ea a\u00ed diluição do projeto de esquerda e disputa por fora. O PSB negocia sem lugar definido."
   },
   {
-    eixo: "Democracia", escopo: "federal",
-    texto: "Sou contra qualquer anistia aos condenados pelos atos do 8 de Janeiro.",
-    pos: { PT: 2, PSB: 2, PDT: 2, PSD: 0 },
-    just: "O campo \u201csem anistia\u201d une PT, PSB e PDT. O PSD é ambíguo por desenho: parte da bancada flerta com a pauta, parte a rejeita."
+    eixo: "Seguran\u00e7a \u00b7 Opera\u00e7\u00f5es", escopo: "estadual",
+    texto: "Grandes opera\u00e7\u00f5es policiais em favelas \u2014 com blindados e helic\u00f3pteros \u2014 devem ser fortemente restringidas, porque matam inocentes e n\u00e3o desmontam o crime.",
+    ctx: "Uma a\u00e7\u00e3o no STF conhecida como \u201cADPF das Favelas\u201d, apresentada pelo PSB, imp\u00f4s condi\u00e7\u00f5es a essas opera\u00e7\u00f5es no Rio.",
+    pos: { PT: 1, PSB: 2, PDT: 0, PSOL: 2 },
+    just: "PSB (autor da ADPF) e PSOL (que fez do controle da letalidade uma raz\u00e3o de exist\u00eancia no Rio) convergem no ponto mais alto. O PT/PCdoB acompanha via PEC da Seguran\u00e7a. O PDT de Martha Rocha, ex-chefe da Pol\u00edcia Civil, aceita opera\u00e7\u00f5es \u2014 desde que guiadas por intelig\u00eancia."
   },
   {
-    eixo: "Polarização", escopo: "federal",
-    texto: "O Brasil precisa de uma alternativa de centro-direita que supere a polarização entre lulismo e bolsonarismo.",
-    pos: { PT: -2, PSB: -2, PDT: -1, PSD: 2 },
-    just: "É exatamente a aposta da chapa Caiado–Kassab (PSD). PT, PSB e PDT estão no palanque da reeleição de Lula."
+    eixo: "Seguran\u00e7a \u00b7 Pol\u00edcias", escopo: "estadual",
+    texto: "Aumentar sal\u00e1rio, equipamento e apoio aos policiais deve ser prioridade t\u00e3o importante quanto punir abusos.",
+    pos: { PT: 1, PSB: 0, PDT: 2, PSOL: -1 },
+    just: "\u00c9 a linha Martha Rocha (PDT): valorizar a carreira policial e investir em per\u00edcia e investiga\u00e7\u00e3o. O PSOL n\u00e3o nega sal\u00e1rios, mas prioriza desmilitariza\u00e7\u00e3o e controle externo \u2014 outra ordem de urg\u00eancias."
   },
   {
-    eixo: "Estilo de coalizão", escopo: "ambos",
-    texto: "Prefiro um partido que negocie e participe de qualquer governo para garantir influência a um partido de posições rígidas.",
-    pos: { PT: -1, PSB: 0, PDT: 0, PSD: 2 },
-    just: "O governismo estrutural — estar em todos os campos ao mesmo tempo — é o método do PSD. O PT é o mais programático dos quatro."
-  },
-  {
-    eixo: "Coesão de bancada", escopo: "ambos",
-    texto: "No voto proporcional, quero garantia de que a bancada votará unida, conforme o programa do partido.",
-    pos: { PT: 2, PSB: 1, PDT: 0, PSD: -2 },
-    just: "A pergunta decisiva do voto de legenda: a coesão do PT é a mais alta; a \u201cloteria interna\u201d do PSD é a mais ampla — por desenho, não por acidente."
-  },
-  {
-    eixo: "Peso das figuras", escopo: "ambos",
-    texto: "Voto na pessoa, não na legenda — mesmo que o partido abrigue de tudo.",
-    pos: { PT: -2, PSB: -1, PDT: 0, PSD: 2 },
-    just: "Quem vota em figuras convive melhor com a dispersão do PSD (confederação de projetos pessoais). Quem vota em programa encontra no rótulo do PT a maior garantia."
-  },
-  {
-    eixo: "Alerj · Fiscalização", escopo: "estadual",
-    texto: "Na próxima Alerj, quero deputados com independência para fiscalizar duramente o governador — mesmo sendo da base dele.",
-    pos: { PT: 0, PSB: 1, PDT: 0, PSD: -2 },
-    just: "Com Paes favorito, o PSD tende a ser o partido do governador — o menos vocacionado à fiscalização. O PSB ficou fora da chapa majoritária; PT e PDT são sócios com identidade própria."
-  },
-  {
-    eixo: "Alerj · Modelo de gestão", escopo: "estadual",
-    texto: "A gestão de Niterói — planejamento de longo prazo e serviços bem avaliados — é um modelo para o estado do Rio.",
-    pos: { PT: 1, PSB: 0, PDT: 2, PSD: 1 },
-    just: "Niterói é a vitrine executiva do PDT fluminense (Rodrigo Neves), à frente de uma coalizão ampla que incluiu PT e PSD."
+    eixo: "Educa\u00e7\u00e3o \u00b7 Marca de governo", escopo: "estadual",
+    texto: "O pr\u00f3ximo governo do estado deveria fazer da escola p\u00fablica em tempo integral \u2014 na linha dos antigos CIEPs \u2014 sua marca principal.",
+    ctx: "Os CIEPs (\u201cBrizol\u00f5es\u201d) foram escolas de turno integral criadas nos governos Brizola, com projeto de Darcy Ribeiro e Niemeyer.",
+    pos: { PT: 1, PSB: 0, PDT: 2, PSOL: 1 },
+    just: "\u00c9 o patrim\u00f4nio simb\u00f3lico m\u00e1ximo do PDT fluminense. PT/PCdoB e PSOL apoiam o tempo integral por outras vias; o PSB p\u00f5e a \u00eanfase federal em ci\u00eancia e tecnologia."
   }
 ];
 
@@ -160,6 +154,7 @@ const ui = {
   eixo: $("urna-eixo"),
   escopo: $("urna-escopo"),
   afirmacao: $("urna-afirmacao"),
+  contexto: $("urna-contexto"),
   opcoes: Array.from(document.querySelectorAll(".opcao")),
   peso: $("urna-peso"),
   confirma: $("btn-confirma"),
@@ -189,6 +184,8 @@ function renderQuestao() {
   ui.eixo.textContent = q.eixo;
   ui.escopo.textContent = ESCOPO_ROTULO[q.escopo];
   ui.afirmacao.textContent = q.texto;
+  ui.contexto.textContent = q.ctx || "";
+  ui.contexto.hidden = !q.ctx;
 
   const salva = estado.respostas[i];
   selecaoAtual = salva && salva.tipo === "valor" ? salva.valor : null;
@@ -278,7 +275,7 @@ document.addEventListener("keydown", (ev) => {
 /* ------------------------------ cálculo --------------------------------- */
 
 function calcularAfinidade(escopos) {
-  const somas = { PT: 0, PSB: 0, PDT: 0, PSD: 0 };
+  const somas = { PT: 0, PSB: 0, PDT: 0, PSOL: 0 };
   let pesoTotal = 0;
   let respondidas = 0;
 
@@ -288,16 +285,16 @@ function calcularAfinidade(escopos) {
     if (!r || r.tipo !== "valor") return;
     respondidas += 1;
     pesoTotal += r.peso;
-    Object.keys(PARTIDOS).forEach((sigla) => {
-      const prox = (4 - Math.abs(r.valor - q.pos[sigla])) / 4;
-      somas[sigla] += prox * r.peso;
+    Object.keys(PARTIDOS).forEach((chave) => {
+      const prox = (4 - Math.abs(r.valor - q.pos[chave])) / 4;
+      somas[chave] += prox * r.peso;
     });
   });
 
   if (pesoTotal === 0) return { respondidas: 0, ranking: [] };
 
   const ranking = Object.keys(PARTIDOS)
-    .map((sigla) => ({ sigla, pct: (somas[sigla] / pesoTotal) * 100 }))
+    .map((chave) => ({ chave, sigla: PARTIDOS[chave].sigla, pct: (somas[chave] / pesoTotal) * 100 }))
     .sort((a, b) => b.pct - a.pct);
 
   return { respondidas, ranking };
@@ -319,7 +316,7 @@ function renderRanking(elLista, elN, resultado) {
   elN.textContent = "base: " + resultado.respondidas + " respostas";
 
   resultado.ranking.forEach((item, idx) => {
-    const cor = PARTIDOS[item.sigla].cor;
+    const cor = PARTIDOS[item.chave].cor;
     const li = document.createElement("li");
     li.className = "ranking__item";
     li.innerHTML =
@@ -356,9 +353,9 @@ function renderDetalhes() {
     div.className = "item-detalhe";
 
     const chips = Object.keys(PARTIDOS)
-      .map((sigla) =>
-        '<span class="posicao posicao--' + PARTIDOS[sigla].cor + '">' +
-        sigla + " " + codigo(q.pos[sigla]) + "</span>")
+      .map((chave) =>
+        '<span class="posicao posicao--' + PARTIDOS[chave].cor + '">' +
+        PARTIDOS[chave].sigla + " " + codigo(q.pos[chave]) + "</span>")
       .join("");
 
     const resposta =
@@ -391,15 +388,15 @@ function renderResultados() {
   if (fed.respondidas > 0 && est.respondidas > 0) {
     const lf = fed.ranking[0];
     const le = est.ranking[0];
-    const iguais = lf.sigla === le.sigla;
+    const iguais = lf.chave === le.chave;
     const margemFed = (lf.pct - fed.ranking[1].pct).toFixed(1);
     leitura.textContent = iguais
-      ? "Sua maior afinidade nas duas câmaras é com o " + lf.sigla +
+      ? "Sua maior afinidade nas duas câmaras é com " + lf.sigla +
         " (margem de " + margemFed + " ponto(s) sobre o segundo colocado no ranking federal). " +
-        "Margens estreitas indicam que vale comparar candidatos das legendas empatadas, não apenas as legendas."
+        "Entre partidos do mesmo campo, margens estreitas são esperadas: nesses casos, compare os candidatos das legendas empatadas, não apenas as legendas."
       : "Seus rankings divergem entre as câmaras: " + lf.sigla + " lidera no federal e " +
-        le.sigla + " no estadual — um resultado plausível, já que os temas fluminenses (Alerj, segurança, modelo de gestão) pesam diferente dos nacionais. " +
-        "Margens estreitas indicam que vale comparar candidatos, não apenas legendas.";
+        le.sigla + " no estadual — plausível, já que os temas fluminenses (apoio a Paes, operações policiais, modelo de gestão) dividem a esquerda de outro jeito que os nacionais. " +
+        "Margens estreitas pedem comparação de candidatos, não apenas de legendas.";
   } else {
     leitura.textContent = "";
   }
@@ -409,7 +406,7 @@ function renderResultados() {
   const linha = (r) =>
     r.ranking.map((x, i) => (i + 1) + "º " + x.sigla + " " + x.pct.toFixed(1) + "%").join(" · ");
   ultimoResumo =
-    "Teste de afinidade partidária — RJ 2026 (PT, PSB, PDT, PSD)\n" +
+    "Teste de afinidade — esquerdas RJ 2026 (PT/PCdoB, PSB, PDT, PSOL)\n" +
     "Deputado federal:  " + (fed.respondidas ? linha(fed) : "sem respostas") + "\n" +
     "Deputado estadual: " + (est.respondidas ? linha(est) : "sem respostas") + "\n" +
     "Posições codificadas com corte em 20/07/2026. Ferramenta informativa; não é recomendação de voto.";

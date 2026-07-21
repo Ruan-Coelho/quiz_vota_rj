@@ -24,7 +24,7 @@
   --pt: #d8382e;
   --psb: #e79b1d;
   --pdt: #2d6fc1;
-  --psd: #1f8f8f;
+  --psol: #7b3fbf;
 
   /* tipografia */
   --f-display: "Archivo Black", "Arial Black", sans-serif;
@@ -95,7 +95,7 @@ body {
 .chip--pt  { background: var(--pt); }
 .chip--psb { background: var(--psb); color: #2a1c00; }
 .chip--pdt { background: var(--pdt); }
-.chip--psd { background: var(--psd); }
+.chip--psol { background: var(--psol); }
 
 .intro p { margin: 0 0 16px; max-width: 62ch; }
 
@@ -220,6 +220,14 @@ body {
   font-size: 1.16rem;
   font-weight: 600;
   line-height: 1.45;
+}
+.urna__visor .visor__ctx {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px dashed #b7c2ab;
+  font-size: 0.88rem;
+  font-weight: 400;
+  color: #3d4437;
 }
 
 .urna__teclas { display: grid; gap: 8px; }
@@ -361,7 +369,7 @@ body {
 .barra--pt  { background: var(--pt); }
 .barra--psb { background: var(--psb); }
 .barra--pdt { background: var(--pdt); }
-.barra--psd { background: var(--psd); }
+.barra--psol { background: var(--psol); }
 
 .leitura {
   margin: 24px 0 8px;
@@ -420,7 +428,7 @@ body {
 .posicao--pt  { border-color: var(--pt);  color: #a92620; }
 .posicao--psb { border-color: var(--psb); color: #9a6206; }
 .posicao--pdt { border-color: var(--pdt); color: #1d548f; }
-.posicao--psd { border-color: var(--psd); color: #14615f; }
+.posicao--psol { border-color: var(--psol); color: #5c2f91; }
 
 .item-detalhe__just {
   margin: 0;
